@@ -1,7 +1,10 @@
 from flask import request, jsonify
 import uuid
+import os.path
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from .. import db
+from ... import db
 from .models import Item
 
 # ----------------------------------------------- #

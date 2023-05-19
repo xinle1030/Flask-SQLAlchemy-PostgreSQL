@@ -1,6 +1,9 @@
 from flask import request
+import os.path
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from ..app import app
+from ...app import app
 from .controllers import list_all_items_controller, create_item_controller, retrieve_item_controller, update_item_controller, delete_item_controller
 
 @app.route("/items", methods=['GET', 'POST'])

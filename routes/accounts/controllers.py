@@ -1,7 +1,10 @@
 from flask import request, jsonify
 import uuid
+import os.path
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from .. import db
+from ... import db
 from .models import Account
 
 # ----------------------------------------------- #
@@ -17,8 +20,7 @@ def list_all_accounts_controller():
     return jsonify(response)
 
 def create_account_controller():
-    request_form = request.form.to_dict()
-    
+    request_form = request.get_json()
     id = str(uuid.uuid4())
     new_account = Account( 
                           id             = id,
@@ -39,7 +41,7 @@ def retrieve_account_controller(account_id):
     return jsonify(response)
 
 def update_account_controller(account_id):
-    request_form = request.form.to_dict()
+    request_form = request.get_json()
     account = Account.query.get(account_id)
     
     account.email        = request_form['email']
