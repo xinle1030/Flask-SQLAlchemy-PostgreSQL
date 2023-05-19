@@ -6,6 +6,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from ... import db
 from .models import Account
+from .util import *
 
 # ----------------------------------------------- #
 
@@ -16,6 +17,7 @@ from .models import Account
 def list_all_accounts_controller():
     accounts = Account.query.all()
     response = []
+    util_func()
     for account in accounts: response.append(account.toDict()) 
     return jsonify(response)
 
